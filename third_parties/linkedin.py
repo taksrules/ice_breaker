@@ -27,7 +27,8 @@ def scrape_linkedin_profile(linkedin_profile_url: str):
     pword = driver.find_element(By.ID, "password")
     pword.send_keys("Taks1998")  
     driver.find_element(By.XPATH, "//button[@type='submit']").click()
-    profile_url = "https://www.linkedin.com/in/kunalshah1/"
+    profile_url = "https://www.linkedin.com/in/stanley-samatanga-ramom-c-85671116b/"
+    # profile_url='https://www.linkedin.com/in/jamesmanyika/'
     driver.get(profile_url)
     start= time.time()
     # will be used in the while loop
@@ -44,16 +45,16 @@ def scrape_linkedin_profile(linkedin_profile_url: str):
             break
     src= driver.page_source
 
-    soup2= BeautifulSoup(src, 'html.parser')
+    soup2= BeautifulSoup(src, 'lxml')
 
     url= linkedin_profile_url
     response= requests.get(url)
     soup= BeautifulSoup(response.content, 'html.parser')
-    intro = soup.find('div', {'class': 'pv-text-details__left-panel'})
+    intro = soup2.find('div', {'class': 'ph5 pb5'})
 
     #Find and extract specific information from the profile
     name_element= soup.find("div", {'id':'profile-content'})
-    paragraphs = soup.find_all("div")
+    paragraphs = soup2.find_all("div")
     name = name_element.text if name_element else None
     return intro
     # bio= soup.find("div", {"class": "profile-bio"}).text

@@ -3,12 +3,15 @@ from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import LLMChain
 from third_parties import scrape_linkedin_profile
+from agents import lookup
  
 from dotenv import load_dotenv
 
 if __name__=='__main__':
-    linkein=scrape_linkedin_profile(linkedin_profile_url='https://www.linkedin.com/in/jamesmanyika/')
-    print(linkein)
+    load_dotenv()
+    lookup()
+    # linkein=scrape_linkedin_profile(linkedin_profile_url='https://www.linkedin.com/in/jamesmanyika/')
+#    #  print(linkein)
 #     load_dotenv()
 #     print("hello")
 #     information={'information':"""
@@ -25,10 +28,11 @@ if __name__=='__main__':
 #                         given the Linkedin information {information} about a person from I want yout to create :
 #                         1. a short summary
 #                         2. two interesting facts about them
+
 #                        """
 #     summary_prompt_template= PromptTemplate(input_variables=['information'] , template=summary_template)
 
 #     llm= ChatOpenAI(temperature=0, model_name='gpt-3.5-turbo')
 
 #     chain = LLMChain(llm=llm, prompt=summary_prompt_template)
-#     print(chain.run(information=information))
+#     # print(chain.run(information=linkein))
